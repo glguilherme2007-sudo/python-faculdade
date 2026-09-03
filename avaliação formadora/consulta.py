@@ -8,6 +8,7 @@
 nome = input("Digite o nome do paciente: ")
 idade = int(input("Digite sua idade: "))
 
+#codigos de atendimentos
 print("\nCódigos de Atendimento: ")
 
 print("1-Consulta médica (R$ 180,00)")
@@ -33,5 +34,18 @@ elif codigo == 3:
 elif codigo == 4:
   antendimento = "Fisioterapia"
   valor = 100
+
+#idade
+
+if idade < 12 or idade >=60:
+  prioritario = True
+else:
+  prioritario = False  
+
+#convenio
+
+if convenio == "S" and prioritario == True:
+  Desconto = 0.25
+     
 
 
