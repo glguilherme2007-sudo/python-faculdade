@@ -5,6 +5,11 @@
 # 4	Fisioterapia	R$ 100,00=
 
 #repetição
+totalpaciente = 0
+totalatendimento = 0
+totalconvenio = 0
+fatbruto = 0
+totaldesc = 0
 continuar = "s"
 while continuar == "s":
  
@@ -23,6 +28,7 @@ while continuar == "s":
 
   codigo = int(input("Digite o codigo de atendimento (1 a 4): "))
   convenio = input("Possui convenio? (S/N:)")
+  print()
 
   if codigo == 1:
     atendimento = "Consulta Medica"
@@ -51,12 +57,15 @@ while continuar == "s":
 
   if convenio == "s" and prioritario == True:
     desconto = 0.25
+    
 
   elif convenio == "s" and prioritario == False:
     desconto = 0.20
+    
 
   elif convenio == "n" and prioritario == True:
     desconto = 0.05
+    
 
   else:
     desconto = 0
@@ -66,10 +75,32 @@ while continuar == "s":
 
   print(f"Voce devera pagar: {custo:.2f}")
 
-  #continuar
-  continuar = input("Deseja cadastrar outro paciente? (S/N):").upper()  
+  
 
+  #acumulo
+  totalpaciente = totalpaciente + 1
+ 
+  if convenio == "s":
+    totalconvenio = totalconvenio +1
 
+  if prioritario == True:  
+   totalatendimento = totalatendimento + 1
+
+  totaldesc += (valor * desconto)  
+  fatbruto += valor 
+  print()
+
+ #continuar
+  continuar = input("Deseja cadastrar outro paciente? (S/N):").lower() 
+
+#exibir acumulo
+print(f"O total de pacientes foi: {totalpaciente:}")
+print(f"O total de atendimentos foi: {totalatendimento:}")
+print(f"O total de pacientes com convenio foi: {totalconvenio:}")
+print(f"O faturamento bruto foi de: {fatbruto:.2f}")
+print(f"o total de descontos aplicados foram de: {totaldesc:.2f}")
+
+ 
          
 
 
