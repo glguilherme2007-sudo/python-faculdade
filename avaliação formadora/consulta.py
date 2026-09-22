@@ -9,7 +9,10 @@ totalpaciente = 0
 totalatendimento = 0
 totalconvenio = 0
 fatbruto = 0
+fatliquido = 0
 totaldesc = 0
+maior = 0
+menor = 0
 continuar = "s"
 while continuar == "s":
  
@@ -46,6 +49,8 @@ while continuar == "s":
     antendimento = "Fisioterapia"
     valor = 100
 
+
+
   #idade
 
   if idade < 12 or idade >=60:
@@ -70,35 +75,64 @@ while continuar == "s":
   else:
     desconto = 0
 
-  #calculo
+  #calculo paciente
   custo = valor - (valor * desconto) 
 
   print(f"Voce devera pagar: {custo:.2f}")
 
-  
 
   #acumulo
   totalpaciente = totalpaciente + 1
- 
+  fatbruto += valor 
+  
   if convenio == "s":
     totalconvenio = totalconvenio +1
 
   if prioritario == True:  
    totalatendimento = totalatendimento + 1
 
+  if totalpaciente == 1:
+    maior = custo
+    menor = custo
+  else:
+    if custo > maior:
+      maior = custo
+    if custo < menor:
+      menor = custo    
+   
+
   totaldesc += (valor * desconto)  
-  fatbruto += valor 
+  
   print()
 
  #continuar
   continuar = input("Deseja cadastrar outro paciente? (S/N):").lower() 
 
+fatliquido = fatbruto - totaldesc
+
+if totalpaciente> 0:
+  media = fatliquido/  totalpaciente
+else:
+  media = 0   
+
+if fatliquido <= 500:
+  classificacao = "movimento baixo"  
+elif fatliquido <= 1500:
+  classificacao = "movimento moderado"
+else:
+  classificacao = "movimento alto"   
+
 #exibir acumulo
 print(f"O total de pacientes foi: {totalpaciente:}")
-print(f"O total de atendimentos foi: {totalatendimento:}")
+print(f"O total de atendimentos prioritarios foi de: {totalatendimento:}")
 print(f"O total de pacientes com convenio foi: {totalconvenio:}")
 print(f"O faturamento bruto foi de: {fatbruto:.2f}")
+print(f"O faturamento liquido foi de: {fatliquido:.2f}")
 print(f"o total de descontos aplicados foram de: {totaldesc:.2f}")
+print(f"Classificação do movimento: {classificacao}")
+print(f"O maior valor pago foi: {maior:.2f}")
+print(f"O menor valor pago foi: {menor:.2f}")
+print(f"A media foi: {media:.2f}")
 
  
          
